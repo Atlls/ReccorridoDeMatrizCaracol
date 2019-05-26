@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <windows.h> //Si usa linux o mac, no me acuerdo la librería :(
-#define MAX 5
+#define MAX 20
 
 /* CaracolA (2.0v) */
 // m es la matriz a evaluar
@@ -10,15 +10,36 @@
 // lim y min cuando llega a cierto punto, cambian para evaluar el problema mas pequeño
 // es decir, lim - 1, min + 1; de tal forma que f y c fluctuen en zon a los límites
 // estor funcionan como un techo y un piso.
+
+void inicializarMatriz(int m[][MAX], int n);
+
 int caracolA(int m[][MAX], int f, int c, int lim, int min);
 
 int main(){
-
-	int matriz[MAX][MAX] = {{1,1,1,1},{1,1,1,1},{1,1,1,1},{1,1,1,1}};
 	
-	printf("La suma es: *%i*\n", caracolA(matriz,0,0,MAX-1,0));
+	int N, matriz[MAX][MAX];
+	
+   do{
+	printf("Inserte el la *n* de la matriz (limite de 20):");
+	scanf("%i", &N);
+	system("cls");
+   }while(N > 20);
+	
+	inicializarMatriz(matriz,N);
+		
+	printf("La suma es: *%i*\n", caracolA(matriz,0,0,N-1,0));
+	
+	system("pause");
 	
 	return 0;
+}
+
+void inicializarMatriz(int m[][MAX], int n){
+	for(int i = 0; i < n; i++){
+		for(int j = 0; j < n; j++){
+			m[i][j] = 1;
+		}
+	}
 }
 
 int caracolA(int m[][MAX], int f, int c, int lim, int min){
